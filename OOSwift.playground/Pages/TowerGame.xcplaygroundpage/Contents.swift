@@ -3,8 +3,8 @@
 
 // structs
 struct Point {
-    let x: Int
-    let y: Int
+    var x: Int
+    var y: Int
     
     // explicit constructor over "memberwise initializer"
     init(x: Int, y: Int) {
@@ -119,3 +119,40 @@ let tower: Tower = Tower(x: 0, y: 1)
 let bigAlly: LaserTower = LaserTower(x: 10, y: 15)
 let enemy: Enemy = Enemy(x: 0, y: 0)
 let bigBoss: Enemy = SuperEnemy(x: 15, y: 14)
+
+class Machine {
+    var location: Point
+    
+    init() {
+        self.location = Point(x: 0, y: 0)
+    }
+    
+    func move(_ direction: String) {
+        print("Do nothing! I am a machine!")
+    }
+}
+
+// Enter your code below
+class Robot: Machine {
+    override func move(_ direction: String) {
+        
+        if direction == "Up" {
+            location.y += 1
+        } else if direction == "Down" {
+            location.y -= 1
+        } else if direction == "Left" {
+            location.x -= 1
+        } else if direction == "Right" {
+            location.x += 1
+        }
+    }
+}
+
+let iRobot: Robot = Robot()
+
+iRobot.location.x
+iRobot.location.y
+iRobot.move("Up")
+iRobot.location.x
+iRobot.location.y
+
