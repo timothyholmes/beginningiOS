@@ -3,8 +3,9 @@ import UIKit
 
 // enums get single names
 
-enum Day {
-    case sunday
+// int enums auto increment, so only = 1 is needed
+enum Day: Int {
+    case sunday = 1
     case monday
     case tuesday
     case wednesday
@@ -58,22 +59,60 @@ enum ColorComponent {
 
 let color = ColorComponent.rgb(61.0, 120.0, 198.0, 1.0).color()
 
+// enum members can come with default values, called "raw values", all of the same type
+// associated values != raw values. Raw values are for always wanting a certain value, associated values
+// are for setting it up on instance. Raw values can only use primitive Swift types, associated vlaues
+// are cool with custom types.
 
-// Example of UIBarButtonItem instance
-// let someButton = UIBarButtonItem(title: "A Title", style: .plain, target: nil, action: nil)
-
-enum BarButton {
-    case done(String)
-    case edit(String)
-    
-    func button() -> UIBarButtonItem {
-        switch self {
-        case .done(let title):
-            return UIBarButtonItem(title: title, style: .done, target: nil, action: nil)
-        case .edit(let title):
-            return UIBarButtonItem(title: title, style: .plain, target: nil, action: nil)
-        }
-    }
+enum Coin: Double {
+    case penny = 0.01
+    case nickel = 0.05
+    case dime = 0.10
+    case quarter = 0.25
 }
 
-let doneButton = BarButton.done("Save").button()
+let coins: [Coin] = [.penny, .nickel, .dime, .dime, .quarter]
+
+func sum(ofCoins coins: [Coin]) -> Double {
+    var total: Double = 0
+    
+    for coin in coins {
+        total += coin.rawValue
+    }
+    
+    return total
+}
+
+sum(ofCoins: coins)
+
+// if you specify String has the type and provide no raw values, it uses a String of the case name as the RV
+enum HTTP: String {
+    case post
+    case get
+    case put
+    case delete
+}
+
+HTTP.delete.rawValue
+
+enum HTTPStatusCode: Int {
+    case success = 200
+    case forbidden = 403
+    case unauthorized = 401
+    case notFound = 404
+}
+
+let statusCode = 200
+
+// this finds the match and returns the enum case.
+// Initializers for enums with rawValues is failable, it'll always return an optional
+let httpStatusCode = HTTPStatusCode(rawValue: statusCode)
+
+enum Compass: Int {
+    case north = 1
+    case south
+    case east
+    case west
+}
+
+let direction = Compass(rawValue: 2)

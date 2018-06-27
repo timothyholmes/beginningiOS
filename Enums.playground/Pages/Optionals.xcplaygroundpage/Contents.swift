@@ -76,7 +76,7 @@ func new(friendDictionary fDic: [String : String]) -> Friend? {
 let homie = new(friendDictionary: ["name": "Mike", "age": "young", "address": "10 cali ave"])
 
 
-//
+// init with a ? is a failable initializer, ie it may or may not return an instance
 
 struct Book {
     let title: String
