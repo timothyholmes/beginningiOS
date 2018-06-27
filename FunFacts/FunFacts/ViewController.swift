@@ -39,8 +39,7 @@ class ViewController: UIViewController {
     // Target Action - Common design pattern. ViewController is target, showFact is the action.
     @IBAction func showFact() {
         funFactLabel.text = factProvider.randomFact()
-        let newColor = backgroundColorProvider.randomBackgroundColor()
-        view.backgroundColor = newColor
-        funFactButton.tintColor = newColor
+        view.backgroundColor = backgroundColorProvider.randomBackgroundColor()
+        funFactButton.tintColor = view.backgroundColor
     }
 }
